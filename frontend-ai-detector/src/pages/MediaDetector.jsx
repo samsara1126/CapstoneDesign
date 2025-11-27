@@ -42,27 +42,19 @@ export default function MediaDetector() {
             // The confidence to display is always the model's confidence in its own prediction.
             const confidencePercent = Math.round(result.confidence * 100);
 
-            let displayLabel;
-            const LOW_CONFIDENCE_THRESHOLD = 40;
-            const HIGH_CONFIDENCE_THRESHOLD = 60;
-
-            // Determine the final display label based on the original label and confidence.
-            if (result.label === 'real' && confidencePercent < LOW_CONFIDENCE_THRESHOLD) {
-              displayLabel = "AI 생성 이미지";
-            } else if (result.label === 'ai' && confidencePercent < LOW_CONFIDENCE_THRESHOLD) {
-              displayLabel = "실제 사진";
-            } else if (confidencePercent < HIGH_CONFIDENCE_THRESHOLD) {
-              displayLabel = "판별 불가";
-            } else {
-              // High confidence, trust the original label.
-              if (result.label === 'ai') {
-                displayLabel = "AI 생성 이미지";
-                confidencePercent = 100 - confidencePercent; 
-              } else { // 'real'
-                displayLabel = "실제 사진";
-              }
-            }
-
+                        let displayLabel;
+            
+                        // Determine the final display label based on the original label and confidence.
+                        if (confidencePercent <= 50) {
+                          displayLabel = "판별 불가";
+                        } else {
+                          // High confidence, trust the original label.
+                          if (result.label === "fake") {
+                            displayLabel = "AI 생성 이미지";
+                          } else { // 'real'
+                            displayLabel = "실제 사진";
+                          }
+                        }
             return (
               <>
                 <p>판별 결과: {displayLabel}</p>

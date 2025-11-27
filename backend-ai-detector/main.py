@@ -41,14 +41,20 @@ async def handle_prediction(file: UploadFile = File(...)):
         prediction_response = endpoint.predict(instances=instances)
 
         prediction = prediction_response.predictions[0]
-        max_confidence_index = prediction['confidences'].index(max(prediction['confidences']))
-        label = prediction['displayNames'][max_confidence_index]
-        confidence = prediction['confidences'][max_confidence_index]
+        confidences = prediction['confidences']
+        display_names = prediction['displayNames']
+
+        label = display_names[max_confidence_index] # Correctly get the label
+        confidence = confidences[max_confidence_index]
+        
+        is_ai_flag = label.lower() in ["fake", "ai"]
+
+        return_label = "fake" if is_ai_flag else "real"
 
         return {
-            "is_ai": True if label == "ai" else False,
+            "is_ai": is_ai_flag,
             "confidence": confidence,
-            "label": label
+            "label": return_label
         }
 
     except Exception as e:
