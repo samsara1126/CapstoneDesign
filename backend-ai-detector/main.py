@@ -44,6 +44,7 @@ async def handle_prediction(file: UploadFile = File(...)):
         confidences = prediction['confidences']
         display_names = prediction['displayNames']
 
+        max_confidence_index = confidences.index(max(confidences))
         label = display_names[max_confidence_index] # Correctly get the label
         confidence = confidences[max_confidence_index]
         
