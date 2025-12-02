@@ -13,7 +13,7 @@ export default function MediaDetector() {
     formData.append('file', file);
     try {
       setLoading(true);
-      const res = await axios.post("https://ai-detector-service-1072427918203.us-central1.run.app/predict", formData, {
+      const res = await axios.post("https://backend-ai-detector-1072427918203.us-central1.run.app/predict", formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setResult(res.data);
