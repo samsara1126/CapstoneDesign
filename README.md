@@ -7,6 +7,7 @@
 최근 생성형 AI(GANs, Diffusion Models 등)의 급격한 발전으로 정교한 가짜 뉴스와 딥페이크 이미지가 확산됨에 따라 사회적 문제가 대두되고 있습니다. 본 프로젝트는 전문적인 AI 지식이 없는 일반 사용자도 웹을 통해 손쉽게 **뉴스 기사와 이미지의 진위 여부를 판별할 수 있는 시스템**을 구축하는 것을 목표로 합니다.
 
 * **웹사이트:** [https://capstone-design-476702.web.app/](https://capstone-design-476702.web.app/)
+* **시연영상:** [https://youtu.be/-Ye9lYw7i0U](https://youtu.be/-Ye9lYw7i0U/)
 * **개발 기간:** 2025-2 학기
 
 ## 주요 기능 
